@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\Categoria_model;
 
 class Home extends BaseController
 {
@@ -21,5 +22,24 @@ class Home extends BaseController
         //return view("principal.html");
         //return view('welcome_message');    
     }
+
+    public function graficar()
+    {
+        try {
+            $cat = new Categoria_model();
+           
+            $categorias = $cat->get_categorias();
+
+             log_message('info', 'Respuesta del servidor: ' . json_encode($categorias));
+
+
+            return json_encode($categorias);
+        } catch (\Exception $e) {
+            var_dump($e);
+            header("HTTP/1.1 500 Internal Server Error");
+            return json_encode(['error' => 'Error interno del servidor']);
+        }
+    }
+
  
 }
