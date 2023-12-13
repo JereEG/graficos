@@ -78,17 +78,12 @@ function graficarSegundo( labels, datos ) {
                 label: 'Cantidad de clientes por país',
                 data: datos,
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(54, 162, 235, 0.8)',
-                    'rgba(255, 206, 86, 0.8)',
-                    'rgba(75, 192, 192, 0.8)'
+                   'rgba(0, 156, 123, 0.8)',
+                    'rgba(201, 93, 20, 0.8)',
+                    'rgba(0, 149, 169, 0.8)',
+                    'rgba(180, 63, 63, 0.8)',
                 ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)'
-                ],
+           
                 borderWidth: 1
             }]
         },
@@ -99,7 +94,8 @@ function graficarSegundo( labels, datos ) {
             maintainAspectRatio: true, // Permite un tamaño personalizado
 
             aspectRatio: 1, // Proporción deseada (ajusta según tus necesidades)
-
+            animation: true,
+            
             elements: {
                 bar: {
                     borderWidth: 2,
@@ -121,7 +117,9 @@ function graficarSegundo( labels, datos ) {
                             size: 14
                         }
                     }
-                }
+                },
+                backgroundColor: 'rgba(0, 0, 0, 0.5)',
+
             },
             scales: {
                 x: {
@@ -162,7 +160,8 @@ function graficarSegundo( labels, datos ) {
                 }]
             },
             options: {
-                 responsive: false, // Evita que el tamaño se ajuste automáticamente
+                animation: true,
+                responsive: false, // Evita que el tamaño se ajuste automáticamente
                 maintainAspectRatio: true, // Permite un tamaño personalizado
 
                 aspectRatio: 1, // Proporción deseada (ajusta según tus necesidades)
@@ -184,7 +183,10 @@ function graficarSegundo( labels, datos ) {
                             size: 14
                         }
                     }
-                }
+                },
+                 customCanvasBackgroundColor: {
+                          color: 'lightGreen',
+                      }
             },
                 scales: {
                     y: {
@@ -193,7 +195,8 @@ function graficarSegundo( labels, datos ) {
                 },
                 
 
-            }
+            },
+             
         });
     }
 </script>
