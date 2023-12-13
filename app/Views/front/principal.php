@@ -93,7 +93,12 @@ function graficarSegundo( labels, datos ) {
             }]
         },
         options: {
-            indexAxis: 'y',
+            indexAxis: 'y', // y hace que sea horizontal
+
+            responsive: false, // Evita que el tamaño se ajuste automáticamente
+            maintainAspectRatio: true, // Permite un tamaño personalizado
+
+            aspectRatio: 1, // Proporción deseada (ajusta según tus necesidades)
 
             elements: {
                 bar: {
