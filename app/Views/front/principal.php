@@ -2,15 +2,25 @@
 
 <div class="container-fluid justify-content-center">
     <h1 class="text-center">Gráficos</h1>
-    <canvas id="myChart" width="400" height="400"></canvas>
+
+    <div class="d-flex justify-content-center mb-3">
+        <canvas id="myChart" width="400" height="400"></canvas>
+    </div>
+
+
+    <div class="d-flex justify-content-center">
+        <canvas id="ChartClientesPorPais" width="400" height="400"></canvas>
+    </div>
 </div>
 
+
 <script>
+    //Primer grafico solicitado en el practico
     $(document).ready(function () {
         $.ajax({
             url: "<?php echo base_url('graficar') ?>",
             type: 'POST',
-            dataType: 'text',
+            dataType: 'json',
             success: function (data) {
                 console.log("Respuesta exitosa:", data);
 
@@ -20,7 +30,6 @@
                 for (var i in data) {
                     categoria.push(data[i].CategoryName);
                     total.push(data[i].total);
-                    console.log(data[i].CategoryName);
                 }
 
                 graficar(categoria, total);
@@ -32,6 +41,92 @@
             }
         });
     });
+    //Segundo grafico solicitado en el practico
+    $(document).ready(function () {
+    $.ajax({
+        url: "<?php echo base_url('graficarClientes') ?>", // Cambia la URL según tu ruta de servidor
+        type: 'POST',
+        dataType: 'json',
+        success: function (data) {
+            console.log("Respuesta exitosa del Grafico2:", data);
+
+            var paises = [];
+            var cantidadClientes = [];
+
+            for (var i in data) {
+                paises.push(data[i].Country);
+                cantidadClientes.push(data[i].CustomerCount);
+            }
+            
+            graficarSegundo( paises, cantidadClientes);
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log("Error en la solicitud AJAX:");
+            console.log(xhr.status + '\n' + ajaxOptions + '\n' + thrownError);
+            console.log(xhr); // Imprimir la respuesta completa 
+        }
+    });
+});
+
+function graficarSegundo( labels, datos ) {
+    const ctxClientes = document.getElementById('ChartClientesPorPais');
+    const clientesChart = new Chart(ctxClientes, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Cantidad de clientes por país',
+                data: datos,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(54, 162, 235, 0.8)',
+                    'rgba(255, 206, 86, 0.8)',
+                    'rgba(75, 192, 192, 0.8)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+
+            elements: {
+                bar: {
+                    borderWidth: 2,
+                }
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Cantidad de clientes por país',
+                    font: {
+                        size: 30
+                    }
+                },
+                legend: {
+                    display: true,
+                    position: 'bottom',
+                    labels: {
+                        font: {
+                            size: 14
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
   
     function graficar(categoria, total) {
         const ctx = document.getElementById('myChart');
@@ -62,11 +157,37 @@
                 }]
             },
             options: {
+                 responsive: false, // Evita que el tamaño se ajuste automáticamente
+                maintainAspectRatio: true, // Permite un tamaño personalizado
+
+                aspectRatio: 1, // Proporción deseada (ajusta según tus necesidades)
+
+                  plugins: {
+
+                title: {
+                    display: true,
+                    text: 'Cantidad de productos por categoría',
+                    font: {
+                        size: 30
+                    }
+                },
+                legend: {
+                    display: true,
+                    position: 'bottom',
+                    labels: {
+                        font: {
+                            size: 14
+                        }
+                    }
+                }
+            },
                 scales: {
                     y: {
                         beginAtZero: true
                     }
-                }
+                },
+                
+
             }
         });
     }

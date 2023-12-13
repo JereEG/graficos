@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use App\Models\Categoria_model;
+use App\Models\CustomersModel;
 
 class Home extends BaseController
 {
@@ -30,10 +31,27 @@ class Home extends BaseController
            
             $categorias = $cat->get_categorias();
 
-             log_message('info', 'Respuesta del servidor: ' . json_encode($categorias));
+             /*log_message('info', 'Respuesta del servidor: ' . json_encode($categorias));*/
 
 
             return json_encode($categorias);
+        } catch (\Exception $e) {
+            var_dump($e);
+            header("HTTP/1.1 500 Internal Server Error");
+            return json_encode(['error' => 'Error interno del servidor']);
+        }
+    }
+    public function graficarClientes()
+    {
+        try {
+            $cat = new CustomersModel();
+           
+            $customets = $cat->getCustomers();
+
+             log_message('info', 'Respuesta del servidor: \n\n\n' . json_encode($customets));
+
+
+            return json_encode($customets);
         } catch (\Exception $e) {
             var_dump($e);
             header("HTTP/1.1 500 Internal Server Error");
