@@ -3,6 +3,8 @@
 namespace App\Controllers;
 use App\Models\Categoria_model;
 use App\Models\CustomersModel;
+use App\Models\CGCategoriaModel;
+use App\Models\CGEmpleadoModel;
 
 class Home extends BaseController
 {
@@ -48,7 +50,7 @@ class Home extends BaseController
            
             $customets = $cat->getCustomers();
 
-             log_message('info', 'Respuesta del servidor: \n\n\n' . json_encode($customets));
+             //log_message('info', 'Respuesta del servidor: \n\n\n' . json_encode($customets));
 
 
             return json_encode($customets);
@@ -58,6 +60,41 @@ class Home extends BaseController
             return json_encode(['error' => 'Error interno del servidor']);
         }
     }
+     public function getTotalPorCategoriasCG()
+    {
+        try {
+            $cat = new CGCategoriaModel();
+           
+            $totalPorCategoria = $cat->getTotalPorCategoriasCG();
+
+             log_message('info', 'Respuesta del servidor: ' . json_encode($totalPorCategoria));
+
+
+            return json_encode($totalPorCategoria);
+        } catch (\Exception $e) {
+            var_dump($e);
+            header("HTTP/1.1 500 Internal Server Error");
+            return json_encode(['error' => 'Error interno del servidor']);
+        }
+    }
+    public function getVentasPorEmpleado()
+{
+    try {
+        $cat = new CGEmpleadoModel();
+        $totalPorEmpleado = $cat->getVentasPorEmpleadoCG();
+
+        // Solo envía el JSON y evita los mensajes de log
+        header('Content-Type: application/json');
+        echo json_encode($totalPorEmpleado);
+    } catch (\Exception $e) {
+        // Loguear el error
+        log_message('error', 'Error en getVentasPorEmpleado: ' . $e->getMessage());
+
+        // Configurar el tipo de contenido y devolver un JSON de error
+        header('Content-Type: application/json', true, 500);
+        echo json_encode(['error' => 'Error interno del servidor']);
+    }
+}
 
  
 }

@@ -20,7 +20,7 @@ class Database extends Config
      * use if no other is specified.
      */
     public string $defaultGroup = 'default';
-
+    public string $otherDataBaseGroup = '$otherDataBase';
     /**
      * The default database connection.
      */
@@ -44,6 +44,30 @@ class Database extends Config
         'port'         => 3306,
         'numberNative' => false,
     ];
+
+    /**
+     * The other database connection.
+     */
+    public array $otherDataBase = [
+        'DSN'      => '',
+        'hostname' => 'localhost',
+        'username' => 'root',
+        'password' => '',
+        'database' => 'cursograficos',
+        'DBDriver' => 'MySQLi',
+        'DBPrefix' => '',
+        'pConnect' => true,
+        'DBDebug'  => true,
+        'charset'  => 'utf8',
+        'DBCollat' => 'utf8_general_ci',
+        'swapPre'  => '',
+        'compress' => false,
+        'encrypt'  => false,
+        'strictOn' => false,
+        'failover' => [],
+        
+    ];
+    
 
     /**
      * This database connection is used when
@@ -80,6 +104,7 @@ class Database extends Config
         // we don't overwrite live data on accident.
         if (ENVIRONMENT === 'testing') {
             $this->defaultGroup = 'tests';
+            $this->otherDataBaseGroup = 'tests';
         }
     }
 }

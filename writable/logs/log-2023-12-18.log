@@ -1,0 +1,157 @@
+CRITICAL - 2023-12-18 09:35:02 --> Class "App\Models\Config\Database" not found
+in APPPATH\Models\CGCategoriaModel.php on line 18.
+ 1 APPPATH\Controllers\Home.php(67): App\Models\CGCategoriaModel->getTotalPorCategoriasCG()
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Home->getTotalPorCategoriasCG()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(71): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-12-18 09:41:45 --> mysqli_sql_exception: Unknown column 'ordendetalle.OrdenId' in 'on clause' in C:\xampp\htdocs\graficos\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\graficos\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT CONCAT(a...', 0)
+#1 C:\xampp\htdocs\graficos\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT CONCAT(a...')
+#2 C:\xampp\htdocs\graficos\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT CONCAT(a...')
+#3 C:\xampp\htdocs\graficos\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT CONCAT(a...', Array, false)
+#4 C:\xampp\htdocs\graficos\app\Models\CGEmpleadoModel.php(26): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\graficos\app\Controllers\Home.php(85): App\Models\CGEmpleadoModel->getVentasPorEmpleadoCG()
+#6 C:\xampp\htdocs\graficos\system\CodeIgniter.php(942): App\Controllers\Home->getVentasPorEmpleado()
+#7 C:\xampp\htdocs\graficos\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\graficos\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\graficos\index.php(71): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-12-18 09:41:45 --> Unknown column 'ordendetalle.OrdenId' in 'on clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT CONCAT(apellido, nombre) as nombreCompleto, SUM(ordendetalle.cantidad * ordendetalle.precio) as total
+FROM `empleados`
+JOIN `orden` ON `orden`.`IDempleado` = `empleados`.`empleadoID`
+JOIN `ordendetalle` ON `ordendetalle`.`OrdenId` = `orden`.`OrdenId`
+GROUP BY `nombreCompleto`', [], false)
+ 2 APPPATH\Models\CGEmpleadoModel.php(26): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\Home.php(85): App\Models\CGEmpleadoModel->getVentasPorEmpleadoCG()
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Home->getVentasPorEmpleado()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(71): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-12-18 09:43:59 --> mysqli_sql_exception: Unknown column 'ordendetalle.OrdenId' in 'on clause' in C:\xampp\htdocs\graficos\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\graficos\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT CONCAT(a...', 0)
+#1 C:\xampp\htdocs\graficos\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT CONCAT(a...')
+#2 C:\xampp\htdocs\graficos\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT CONCAT(a...')
+#3 C:\xampp\htdocs\graficos\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT CONCAT(a...', Array, false)
+#4 C:\xampp\htdocs\graficos\app\Models\CGEmpleadoModel.php(26): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\graficos\app\Controllers\Home.php(85): App\Models\CGEmpleadoModel->getVentasPorEmpleadoCG()
+#6 C:\xampp\htdocs\graficos\system\CodeIgniter.php(942): App\Controllers\Home->getVentasPorEmpleado()
+#7 C:\xampp\htdocs\graficos\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\graficos\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\graficos\index.php(71): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-12-18 09:43:59 --> Unknown column 'ordendetalle.OrdenId' in 'on clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT CONCAT(apellido, nombre) as nombreCompleto, SUM(ordendetalle.cantidad * ordendetalle.precio) as total
+FROM `empleados`
+JOIN `orden` ON `orden`.`IDempleado` = `empleados`.`empleadoID`
+JOIN `ordendetalle` ON `ordendetalle`.`OrdenId` = `orden`.`OrdenId`
+GROUP BY `nombreCompleto`', [], false)
+ 2 APPPATH\Models\CGEmpleadoModel.php(26): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\Home.php(85): App\Models\CGEmpleadoModel->getVentasPorEmpleadoCG()
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Home->getVentasPorEmpleado()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(71): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-12-18 09:46:52 --> mysqli_sql_exception: Unknown column 'ordendetalle.OrdenId' in 'on clause' in C:\xampp\htdocs\graficos\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\graficos\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT CONCAT(a...', 0)
+#1 C:\xampp\htdocs\graficos\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT CONCAT(a...')
+#2 C:\xampp\htdocs\graficos\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT CONCAT(a...')
+#3 C:\xampp\htdocs\graficos\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT CONCAT(a...', Array, false)
+#4 C:\xampp\htdocs\graficos\app\Models\CGEmpleadoModel.php(26): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\graficos\app\Controllers\Home.php(85): App\Models\CGEmpleadoModel->getVentasPorEmpleadoCG()
+#6 C:\xampp\htdocs\graficos\system\CodeIgniter.php(942): App\Controllers\Home->getVentasPorEmpleado()
+#7 C:\xampp\htdocs\graficos\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\graficos\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\graficos\index.php(71): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-12-18 09:46:52 --> Unknown column 'ordendetalle.OrdenId' in 'on clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT CONCAT(apellido, nombre) as nombreCompleto, SUM(ordendetalle.cantidad * ordendetalle.precio) as total
+FROM `empleados`
+JOIN `orden` ON `orden`.`IDempleado` = `empleados`.`empleadoID`
+JOIN `ordendetalle` ON `ordendetalle`.`OrdenId` = `orden`.`OrdenId`
+GROUP BY `nombreCompleto`', [], false)
+ 2 APPPATH\Models\CGEmpleadoModel.php(26): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\Home.php(85): App\Models\CGEmpleadoModel->getVentasPorEmpleadoCG()
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Home->getVentasPorEmpleado()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(71): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-12-18 09:51:50 --> mysqli_sql_exception: Unknown column 'orden.OrdenId' in 'on clause' in C:\xampp\htdocs\graficos\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\graficos\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT CONCAT(a...', 0)
+#1 C:\xampp\htdocs\graficos\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT CONCAT(a...')
+#2 C:\xampp\htdocs\graficos\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT CONCAT(a...')
+#3 C:\xampp\htdocs\graficos\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT CONCAT(a...', Array, false)
+#4 C:\xampp\htdocs\graficos\app\Models\CGEmpleadoModel.php(26): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\graficos\app\Controllers\Home.php(85): App\Models\CGEmpleadoModel->getVentasPorEmpleadoCG()
+#6 C:\xampp\htdocs\graficos\system\CodeIgniter.php(942): App\Controllers\Home->getVentasPorEmpleado()
+#7 C:\xampp\htdocs\graficos\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\graficos\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\graficos\index.php(71): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-12-18 09:51:50 --> Unknown column 'orden.OrdenId' in 'on clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT CONCAT(apellido, nombre) as nombreCompleto, SUM(ordendetalle.cantidad * ordendetalle.precio) as total
+FROM `empleados`
+JOIN `orden` ON `orden`.`IDempleado` = `empleados`.`empleadoID`
+JOIN `ordendetalle` ON `ordendetalle`.`IDorden` = `orden`.`OrdenId`
+GROUP BY `nombreCompleto`', [], false)
+ 2 APPPATH\Models\CGEmpleadoModel.php(26): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\Home.php(85): App\Models\CGEmpleadoModel->getVentasPorEmpleadoCG()
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Home->getVentasPorEmpleado()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(71): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-12-18 09:55:56 --> mysqli_sql_exception: Unknown column 'ordendetalle.IDproducto' in 'on clause' in C:\xampp\htdocs\graficos\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\graficos\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT CONCAT(a...', 0)
+#1 C:\xampp\htdocs\graficos\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT CONCAT(a...')
+#2 C:\xampp\htdocs\graficos\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT CONCAT(a...')
+#3 C:\xampp\htdocs\graficos\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT CONCAT(a...', Array, false)
+#4 C:\xampp\htdocs\graficos\app\Models\CGEmpleadoModel.php(27): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\graficos\app\Controllers\Home.php(85): App\Models\CGEmpleadoModel->getVentasPorEmpleadoCG()
+#6 C:\xampp\htdocs\graficos\system\CodeIgniter.php(942): App\Controllers\Home->getVentasPorEmpleado()
+#7 C:\xampp\htdocs\graficos\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\graficos\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\graficos\index.php(71): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-12-18 09:55:56 --> Unknown column 'ordendetalle.IDproducto' in 'on clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT CONCAT(apellido, nombre) as nombreCompleto, SUM(ordendetalle.cantidad * ordendetalle.precio) as total
+FROM `empleados`
+JOIN `orden` ON `orden`.`IDempleado` = `empleados`.`empleadoID`
+JOIN `productos` ON `productos`.`productoID` = `ordendetalle`.`IDproducto`
+JOIN `ordendetalle` ON `ordendetalle`.`IDorden` = `orden`.`OrderID`
+GROUP BY `nombreCompleto`', [], false)
+ 2 APPPATH\Models\CGEmpleadoModel.php(27): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\Home.php(85): App\Models\CGEmpleadoModel->getVentasPorEmpleadoCG()
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Home->getVentasPorEmpleado()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(71): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-12-18 10:10:06 --> Error en graficarVentasPorEmpleado: "info en getVentasPorEmpleado" is an invalid log level.
+ERROR - 2023-12-18 10:11:07 --> Error en graficarVentasPorEmpleado: "info en getVentasPorEmpleado" is an invalid log level.
+ERROR - 2023-12-18 10:11:38 --> Error en graficarVentasPorEmpleado: "info en getVentasPorEmpleado" is an invalid log level.
+ERROR - 2023-12-18 10:11:59 --> Error en graficarVentasPorEmpleado: "info en getVentasPorEmpleado" is an invalid log level.
+ERROR - 2023-12-18 10:14:34 --> Error en graficarVentasPorEmpleado: "info en getVentasPorEmpleado" is an invalid log level.
+ERROR - 2023-12-18 10:14:40 --> Error en graficarVentasPorEmpleado: "info en getVentasPorEmpleado" is an invalid log level.
+ERROR - 2023-12-18 10:15:10 --> Error en graficarVentasPorEmpleado: "info en getVentasPorEmpleado" is an invalid log level.
+ERROR - 2023-12-18 10:15:19 --> Error en graficarVentasPorEmpleado: "info en getVentasPorEmpleado" is an invalid log level.
+ERROR - 2023-12-18 10:15:51 --> Error en graficarVentasPorEmpleado: "info en getVentasPorEmpleado" is an invalid log level.
+ERROR - 2023-12-18 10:15:57 --> Error en graficarVentasPorEmpleado: "info en getVentasPorEmpleado" is an invalid log level.
+CRITICAL - 2023-12-18 10:56:20 --> syntax error, unexpected single-quoted string ", nombre) as nombreCompleto, S...", expecting ")"
+in APPPATH\Models\CGEmpleadoModel.php on line 20.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(291): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\graficos\\app\\Models\\CGEmpleadoModel.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(269): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Models\\CGEmpleadoModel')
+ 3 APPPATH\Controllers\Home.php(83): CodeIgniter\Autoloader\Autoloader->loadClass('App\\Models\\CGEmpleadoModel')
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Home->getVentasPorEmpleado()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(71): CodeIgniter\CodeIgniter->run()

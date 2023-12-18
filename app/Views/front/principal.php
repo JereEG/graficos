@@ -11,6 +11,15 @@
     <div class="d-flex justify-content-center">
         <canvas id="ChartClientesPorPais" width="400" height="400"></canvas>
     </div>
+
+    <div class="d-flex justify-content-center">
+        <h1>Integrador</h1>
+        <canvas id="ChartProductoPorCategoriaCG" width="400" height="400"></canvas>
+    </div>
+    <div class="d-flex justify-content-center">
+        <h1>Integrador</h1>
+        <canvas id="ChartVentasPorEmpleadoCG" width="400" height="400"></canvas>
+    </div>
 </div>
 
 
@@ -22,7 +31,7 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-                console.log("Respuesta exitosa:", data);
+                //console.log("Respuesta exitosa:", data);
 
                 var categoria = [];
                 var total = [];
@@ -48,7 +57,7 @@
         type: 'POST',
         dataType: 'json',
         success: function (data) {
-            console.log("Respuesta exitosa del Grafico2:", data);
+            //console.log("Respuesta exitosa del Grafico2:", data);
 
             var paises = [];
             var cantidadClientes = [];
@@ -67,6 +76,188 @@
         }
     });
 });
+
+    //Integrador
+    $(document).ready(function () {
+        $.ajax({
+            url: "<?php echo base_url('graficarProductoPorCategoriaCG') ?>", // Cambia la URL según tu ruta de servidor
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                //console.log("Respuesta exitosa de getTotalPorCategoriasCG:", data);
+
+                var paises = [];
+                var cantidadClientes = [];
+
+                for (var i in data) {
+                    paises.push(data[i].categoriaNombre);
+                    cantidadClientes.push(data[i].total);
+                }
+
+                gProductoPorCategoriaCG(paises, cantidadClientes);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log("Error en la solicitud AJAX:");
+                console.log(xhr.status + '\n' + ajaxOptions + '\n' + thrownError);
+                console.log(xhr); // Imprimir la respuesta completa 
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        $.ajax({
+            url: "<?php echo base_url('graficarVentasPorEmpleado') ?>", // Cambia la URL según tu ruta de servidor
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                console.log("Respuesta exitosa de Ventas por empleado:", data);
+
+                var paises = [];
+                var cantidadClientes = [];
+
+                for (var i in data) {
+                    paises.push(data[i].nombreCompleto);
+                    cantidadClientes.push(data[i].total);
+                }
+
+                gVentasPorEmpleadoCG(paises, cantidadClientes);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log("Error en la solicitud AJAX VentasPorEmpleadoCG:");
+                console.log(xhr.status + '\n' + ajaxOptions + '\n' + thrownError);
+                console.log(xhr); // Imprimir la respuesta completa 
+            }
+        });
+    });
+
+    function gVentasPorEmpleadoCG(labels, datos) {
+        const ctxClientes = document.getElementById('ChartVentasPorEmpleadoCG');
+        const clientesChart = new Chart(ctxClientes, {
+            type: 'bar',
+            dataType: 'json',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Cantidad de clientes por país',
+                    data: datos,
+                    backgroundColor: [
+                        'rgba(0, 156, 123, 0.8)',
+                        'rgba(201, 93, 20, 0.8)',
+                        'rgba(0, 149, 169, 0.8)',
+                        'rgba(180, 63, 63, 0.8)',
+                    ],
+
+                    borderWidth: 1
+                }]
+            },
+            options: {
+
+
+                responsive: false, // Evita que el tamaño se ajuste automáticamente
+                maintainAspectRatio: true, // Permite un tamaño personalizado
+
+                aspectRatio: 1, // Proporción deseada (ajusta según tus necesidades)
+                animation: true,
+
+                elements: {
+                    bar: {
+                        borderWidth: 2,
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Cantidad de clientes por país',
+                        font: {
+                            size: 30
+                        }
+                    },
+                    legend: {
+                        display: true,
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
+
+
+    function gProductoPorCategoriaCG(labels, datos) {
+        const ctxClientes = document.getElementById('ChartProductoPorCategoriaCG');
+        const clientesChart = new Chart(ctxClientes, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Cantidad de clientes por país',
+                    data: datos,
+                    backgroundColor: [
+                        'rgba(0, 156, 123, 0.8)',
+                        'rgba(201, 93, 20, 0.8)',
+                        'rgba(0, 149, 169, 0.8)',
+                        'rgba(180, 63, 63, 0.8)',
+                    ],
+
+                    borderWidth: 1
+                }]
+            },
+            options: {
+
+
+                responsive: false, // Evita que el tamaño se ajuste automáticamente
+                maintainAspectRatio: true, // Permite un tamaño personalizado
+
+                aspectRatio: 1, // Proporción deseada (ajusta según tus necesidades)
+                animation: true,
+
+                elements: {
+                    bar: {
+                        borderWidth: 2,
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Cantidad de clientes por país',
+                        font: {
+                            size: 30
+                        }
+                    },
+                    legend: {
+                        display: true,
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
+
 
 function graficarSegundo( labels, datos ) {
     const ctxClientes = document.getElementById('ChartClientesPorPais');
