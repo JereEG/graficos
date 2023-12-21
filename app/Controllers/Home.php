@@ -5,6 +5,7 @@ use App\Models\Categoria_model;
 use App\Models\CustomersModel;
 use App\Models\CGCategoriaModel;
 use App\Models\CGEmpleadoModel;
+use App\Models\CGOrdenDetalleModel;
 
 class Home extends BaseController
 {
@@ -86,6 +87,25 @@ class Home extends BaseController
         // Solo envía el JSON y evita los mensajes de log
         header('Content-Type: application/json');
         echo json_encode($totalPorEmpleado);
+    } catch (\Exception $e) {
+        // Loguear el error
+        log_message('error', 'Error en getVentasPorEmpleado: ' . $e->getMessage());
+
+        // Configurar el tipo de contenido y devolver un JSON de error
+        header('Content-Type: application/json', true, 500);
+        echo json_encode(['error' => 'Error interno del servidor']);
+    }
+}
+
+public function getVentasPorAñosCG()
+{
+    try {
+        $cat = new CGOrdenDetalleModel();
+        $ventasPorAnio = $cat->getVentasPorAñosCG();
+
+        // Solo envía el JSON y evita los mensajes de log
+        header('Content-Type: application/json');
+        echo json_encode($ventasPorAnio);
     } catch (\Exception $e) {
         // Loguear el error
         log_message('error', 'Error en getVentasPorEmpleado: ' . $e->getMessage());

@@ -13,12 +13,16 @@
     </div>
 
     <div class="d-flex justify-content-center">
-        <h1>Integrador</h1>
+        <h1>Integrador</h1> </br>
         <canvas id="ChartProductoPorCategoriaCG" width="400" height="400"></canvas>
     </div>
     <div class="d-flex justify-content-center">
-        <h1>Integrador</h1>
+        <h1>Integrador</h1></br>
         <canvas id="ChartVentasPorEmpleadoCG" width="400" height="400"></canvas>
+    </div>
+    <div class="d-flex justify-content-center">
+        <h1>Integrador</h1></br>
+        <canvas id="ChartVentasPorAñoCG" width="400" height="400"></canvas>
     </div>
 </div>
 
@@ -129,6 +133,84 @@
             }
         });
     });
+
+    $(document).ready(function () {
+            $.ajax({
+                url: "<?php echo base_url('graficarVentasPorAnio') ?>", // Cambia la URL según tu ruta de servidor
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    console.log("Respuesta exitosa de Ventas por empleado:", data);
+
+                    var paises = [];
+                    var cantidadClientes = [];
+
+                    for (var i in data) {
+                        paises.push(data[i].anio);
+                        cantidadClientes.push(data[i].total);
+                    }
+
+                    gVentasPorAnioCG(paises, cantidadClientes);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log("Error en la solicitud AJAX VentasPorEmpleadoCG:");
+                    console.log(xhr.status + '\n' + ajaxOptions + '\n' + thrownError);
+                    console.log(xhr); // Imprimir la respuesta completa 
+                }
+            });
+        });
+
+            function gVentasPorAnioCG(labels, datos) {
+                    const ctxClientes = document.getElementById('ChartVentasPorAñoCG');
+                    const clientesChart = new Chart(ctxClientes, {
+                        type: 'line',
+                        dataType: 'json',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Cantidad de clientes por país',
+                                data: datos,
+
+
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                             responsive: false, // Evita que el tamaño se ajuste automáticamente
+                            maintainAspectRatio: true, // Permite un tamaño personalizado
+
+                            aspectRatio: 1, // Proporción deseada (ajusta según tus necesidades)
+                            animation: true,
+
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: 'Ventas por Año'
+                                },
+                            },
+                            interaction: {
+                                intersect: false,
+                            },
+                            scales: {
+                                x: {
+                                    display: true,
+                                    title: {
+                                        display: true
+                                    }
+                                },
+                                y: {
+                                    display: true,
+                                    title: {
+                                        display: true,
+                                        text: 'Value'
+                                    },
+                                    suggestedMin: -10,
+                                    suggestedMax: 200
+                                }
+                            }
+                        },
+                    });
+                }
 
     function gVentasPorEmpleadoCG(labels, datos) {
         const ctxClientes = document.getElementById('ChartVentasPorEmpleadoCG');
